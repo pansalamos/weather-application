@@ -1,0 +1,17 @@
+/* Όλο το σώμα με Manrope */
+body {
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Προαιρετικά μικρές βελτιώσεις */
+table th,
+table td {
+  font-family: "Manrope", sans-serif;
+}
+button,
+select,
+label {
+  font-family: "Manrope", sans-serif;
+}
