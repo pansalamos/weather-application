@@ -57,7 +57,7 @@ export default function App() {
   const [selectedDayIndex, setSelectedDayIndex] = useState(0);
   const dailyTabsRef = useRef(null);
 
-  const API_KEY = "56980a5587034f7eab2100131250811"; // <-- αντικατέστησε με το δικό σου WeatherAPI key
+  const API_KEY = "56980a5587034f7eab2100131250811"; // <-- δικό σου WeatherAPI key
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -195,7 +195,7 @@ export default function App() {
               key={d.date}
               onClick={() => setSelectedDayIndex(i)}
               style={{
-                minWidth: 140,
+                minWidth: 150,
                 padding: 10,
                 borderRadius: 10,
                 background: selectedDayIndex === i ? accent : panelBg,
@@ -209,7 +209,13 @@ export default function App() {
                     : textColor,
               }}
             >
-              <div>{d.dayName}</div>
+              <div>
+                {d.dayName},{" "}
+                {new Date(d.date).toLocaleDateString("el-GR", {
+                  day: "2-digit",
+                  month: "2-digit",
+                })}
+              </div>
               <img
                 src={d.condition.icon}
                 alt="icon"
@@ -234,7 +240,13 @@ export default function App() {
       </div>
 
       {/* Hourly table */}
-      <h2>Πρόγνωση ανά ώρα — {dailyForecast[selectedDayIndex].dayName}</h2>
+      <h2>
+        Πρόγνωση ανά ώρα — {dailyForecast[selectedDayIndex].dayName},{" "}
+        {new Date(dailyForecast[selectedDayIndex].date).toLocaleDateString(
+          "el-GR",
+          { day: "2-digit", month: "2-digit" }
+        )}
+      </h2>
       <div
         style={{
           overflowX: "auto",
@@ -285,7 +297,7 @@ export default function App() {
       </div>
 
       {/* Chart */}
-      <h3 style={{ marginTop: 16 }}>📊 Διάγραμμα Θερμοκρασίας & Βροχής</h3>
+      <h3 style={{ marginTop: 16 }}>Διάγραμμα Θερμοκρασίας & Βροχής</h3>
       <div style={{ background: panelBg, borderRadius: 10, padding: 10 }}>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart
